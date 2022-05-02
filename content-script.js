@@ -4,6 +4,12 @@ chrome.runtime.onMessage.addListener(function (req, sender, sendResponse) {
             try{
                 console.log('[PARSE_STARTED]')
 
+                // check if tabel doesnt already exist
+                if($('#My_Table').length){
+                    sendResponse("CSV already parsed")
+                    return
+                }
+
                 // {hasHeader, delimiter}
                 var flags = req.data
                 console.log(flags)
